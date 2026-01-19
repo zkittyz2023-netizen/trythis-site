@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>More Games - trythis.online</title>
+    <style>
+        body { font-family: -apple-system, sans-serif; background: #fdfdfd; margin: 0; text-align: center; }
+        .container { max-width: 480px; margin: 0 auto; padding: 15px; }
+
+        /* [1] Logo 样式：保持 35px 高度 */
+        .logo-box { padding: 10px 0; display: flex; align-items: center; justify-content: flex-start; }
+        .logo-box img { height: 35px; object-fit: contain; }
+
+        /* [2] 分隔线 */
+        hr { border: 0; border-top: 1px solid #eee; margin: 10px 0; }
+        .title-tag { text-align: left; font-size: 16px; color: #333; margin: 15px 5px; font-weight: bold; }
+
+        /* [3] 6个图标网格布局 */
+        .game-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+        
+        /* 5度倾斜动效核心代码 */
+        .game-item { text-decoration: none; border-radius: 12px; overflow: hidden; background: white; box-shadow: 0 2px 6px rgba(0,0,0,0.06); transition: transform 0.3s ease; display: block; }
+        .game-item:hover { transform: rotate(5deg); z-index: 5; } /* 鼠标移入或手指点击时倾斜 */
+        
+        .game-item img { width: 100%; height: 110px; object-fit: cover; display: block; }
+        
+        /* 标签文字及背景 */
+        .label { color: white; padding: 4px 0; font-size: 12px; font-weight: bold; }
+
+        /* [4] Banner 广告位 */
+        .ad-slot { width: 100%; min-height: 90px; background: #f0f0f0; margin: 25px 0; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #ccc; font-size: 12px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo-box"><img src="images/logo.png"></div>
+        <hr>
+
+        <div class="title-tag">More Games</div>
+        
+<div class="game-grid">
+        <a href="商店链接1" target="_blank" class="game-item">
+            <img src="images/m1.jpg">
+            <div class="label" style="background:#8e2a2a;">Download</div>
+        </a>
+
+        <a href="商店链接2" target="_blank" class="game-item">
+            <img src="images/m2.jpg">
+            <div class="label" style="background:#d35400;">Download</div>
+        </a>
+
+        <a href="商店链接3" target="_blank" class="game-item">
+            <img src="images/m3.jpg">
+            <div class="label" style="background:#2c3e50;">Download</div>
+        </a>
+
+        <a href="商店链接4" target="_blank" class="game-item">
+            <img src="images/m4.jpg">
+            <div class="label" style="background:#c0392b;">Download</div>
+        </a>
+
+        <a href="商店链接5" target="_blank" class="game-item">
+            <img src="images/m5.jpg">
+            <div class="label" style="background:#2980b9;">Download</div>
+        </a>
+
+        <a href="商店链接6" target="_blank" class="game-item">
+            <img src="images/m6.jpg">
+            <div class="label" style="background:#27ae60;">Download</div>
+        </a>
+    </div>
+
+        <div class="ad-slot">ADVERTISEMENT</div>
+    </div>
+</body>
+</html>

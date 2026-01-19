@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>trythis.online - Play Instantly</title>
+    <style>
+        :root { --main-bg: #fdfdfd; }
+        body { font-family: -apple-system, sans-serif; background: var(--main-bg); margin: 0; text-align: center; color: #333; }
+        .container { max-width: 480px; margin: 0 auto; padding: 15px; }
+
+        /* [1] Logo区域 */
+        .logo-box { padding: 10px 0; display: flex; align-items: center; justify-content: flex-start; }
+        .logo-box img { height: 35px; object-fit: contain; }
+
+        /* [2] 分隔线 */
+        .line { border: 0; border-top: 1px solid #eee; margin: 10px 0; }
+
+        /* [3] 自动轮播大图 */
+        .slider-container { position: relative; width: 100%; border-radius: 20px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.1); margin-top: 5px; }
+        .slides { display: flex; transition: transform 0.5s ease-in-out; width: 500%; } /* 5张图对应500% */
+        .slides a { width: 20%; position: relative; display: block; }
+        .slides img { width: 100%; height: 210px; object-fit: cover; display: block; }
+
+        /* 轮播图内部的 Play Now 按钮 */
+        .slider-container { position: relative; width: 100%; border-radius: 20px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+        .slides { display: flex; transition: transform 0.5s ease-in-out; width: 500%; }
+        .slides a { width: 20%; position: relative; display: block; }
+        .slides img { width: 100%; height: 210px; object-fit: cover; display: block; }
+
+        .play-now-overlay {
+            position: absolute;
+            right: 15px; 
+            bottom: 15px; 
+            background: rgba(255, 255, 255, 0.95); /* 半透明白色，非常百搭 */
+            color: #222; 
+            padding: 8px 22px; 
+            border-radius: 25px; 
+            font-weight: 800; /* 极粗字体，更像按钮 */
+            font-size: 14px;
+            text-decoration: none;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            transition: transform 0.2s;
+            z-index: 10;
+        }
+        .play-now-overlay:active { transform: scale(0.9); } /* 点击时缩小的反馈感 */
+
+        /* [4] 轮播圆点 */
+        .dots { display: flex; justify-content: center; gap: 6px; margin: 12px 0; }
+        .dot { width: 7px; height: 7px; background: #e0e0e0; border-radius: 50%; transition: all 0.3s; }
+        .dot.active { background: #555; transform: scale(1.2); }
+
+        /* [5] More Games 按钮及文字链接 */
+        .more-games-wrap { margin: 15px 0; }
+        .more-btn { display: inline-block; background: linear-gradient(180deg, #ffffff 0%, #f0f0f0 100%); border: 1px solid #ccc; padding: 12px 55px; border-radius: 35px; text-decoration: none; color: #333; font-weight: bold; font-size: 16px; box-shadow: 0 3px 6px rgba(0,0,0,0.05); }
+        .click-here-text { font-size: 13px; color: #999; margin-top: 8px; }
+        .click-here-text a { color: #007aff; text-decoration: none; font-weight: 500; }
+
+        /* [6] 分类图标 (带15度倾斜动效) */
+        .game-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 15px; }
+        .game-item { text-decoration: none; border-radius: 12px; overflow: hidden; background: white; box-shadow: 0 2px 6px rgba(0,0,0,0.06); transition: transform 0.3s ease; display: block; }
+        
+        /* 鼠标移入向右倾5度 */
+        .game-item:hover { transform: rotate(5deg); z-index: 10; }
+        
+        .game-item img { width: 100%; height: 110px; object-fit: cover; display: block; }
+        .label { color: white; padding: 4px 0; font-size: 12px; font-weight: bold; }
+
+        /* [7] Banner 广告位 */
+        .ad-container { width: 100%; min-height: 90px; background: #f0f0f0; margin: 25px 0; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #ccc; font-size: 12px; }
+
+        /* [8] 底部文字链接 */
+        .footer-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; padding: 20px 0; border-top: 1px solid #eee; }
+        .footer-links a { color: #777; text-decoration: none; font-size: 12px; border-bottom: 1px solid transparent; }
+        .footer-links a:hover { border-bottom: 1px solid #777; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="logo-box">
+        <img src="images/logo.png" alt="trythis.online">
+    </div>
+
+    <div class="line"></div>
+
+    <div class="slider-container">
+        <div class="slides" id="mainSlides">
+            <a href="轮播链接1" target="_blank"><img src="images/banner1.png"><span class="play-now-overlay">Play Now</span></a>
+            <a href="轮播链接2" target="_blank"><img src="images/banner2.png"><span class="play-now-overlay">Play Now</span></a>
+            <a href="轮播链接3" target="_blank"><img src="images/banner3.png"><span class="play-now-overlay">Play Now</span></a>
+            <a href="轮播链接4" target="_blank"><img src="images/banner4.png"><span class="play-now-overlay">Play Now</span></a>
+            <a href="轮播链接5" target="_blank"><img src="images/banner5.png"><span class="play-now-overlay">Play Now</span></a>
+        </div>
+    </div>
+
+    <div class="dots" id="mainDots">
+        <div class="dot active"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div>
+    </div>
+
+    <div class="more-games-wrap">
+        <a href="more.html" target="_blank" class="more-btn">🎮 More Games</a>
+        <div class="click-here-text">Can't find your game? <a href="more.html" target="_blank">Click here</a></div>
+    </div>
+
+    <div class="line"></div>
+    <p style="font-size:12px; color:#888; text-align:left; margin-left:5px;">Play Instantly (No Download)</p>
+
+    <div class="game-grid">
+        <a href="链接1" target="_blank" class="game-item">
+            <img src="images/game1.jpg"><div class="label" style="background:#8e2a2a;">Casual</div>
+        </a>
+        <a href="链接2" target="_blank" class="game-item">
+            <img src="images/game2.jpg"><div class="label" style="background:#d35400;">Puzzle</div>
+        </a>
+        <a href="链接3" target="_blank" class="game-item">
+            <img src="images/game3.jpg"><div class="label" style="background:#2c3e50;">Adventure</div>
+        </a>
+        <a href="链接4" target="_blank" class="game-item">
+            <img src="images/game4.jpg"><div class="label" style="background:#c0392b;">Dress-up</div>
+        </a>
+        <a href="链接5" target="_blank" class="game-item">
+            <img src="images/game5.jpg"><div class="label" style="background:#2980b9;">Racing</div>
+        </a>
+        <a href="链接6" target="_blank" class="game-item">
+            <img src="images/game6.jpg"><div class="label" style="background:#27ae60;">Shooter</div>
+        </a>
+    </div>
+
+    <div class="ad-container">
+        ADVERTISEMENT
+    </div>
+
+    <div class="footer-links">
+        <a href="链接1" target="_blank">exclusive</a>
+        <a href="链接2" target="_blank">hot games</a>
+        <a href="链接3" target="_blank">brain teasers</a>
+        <a href="链接4" target="_blank">best new</a>
+        <a href="链接5" target="_blank">editor's pick</a>
+        <a href="链接6" target="_blank">in-game purchase</a>
+    </div>
+</div>
+
+<script>
+    let curIndex = 0;
+    const slidesEle = document.getElementById('mainSlides');
+    const dotEles = document.querySelectorAll('.dot');
+    function startAutoSlide() {
+        curIndex = (curIndex + 1) % 5;
+        slidesEle.style.transform = `translateX(-${curIndex * 20}%)`;
+        dotEles.forEach((d, i) => d.classList.toggle('active', i === curIndex));
+    }
+    setInterval(startAutoSlide, 3500); // 每3.5秒自动轮播
+</script>
+
+</body>
+</html>
