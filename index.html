@@ -75,9 +75,26 @@
         .logo-box img { height: 40px; object-fit: contain; } 
         .line { border: 0; border-top: 1px solid #eee; margin: 15px 0; }
         
+        /* 轮播图容器 - 增加手动滑动支持 */
         .slider-container { position: relative; width: 100%; border-radius: 25px; overflow: hidden; box-shadow: 0 8px 25px rgba(0,0,0,0.1); }
-        .slides { display: flex; transition: transform 0.5s ease-in-out; width: 500%; }
-        .slides a { width: 20%; position: relative; display: block; }
+        .slides { 
+            display: flex; 
+            width: 100%; 
+            overflow-x: auto; 
+            scroll-snap-type: x mandatory; 
+            scroll-behavior: smooth; 
+            scrollbar-width: none; /* Firefox */
+            -ms-overflow-style: none; /* IE */
+        }
+        .slides::-webkit-scrollbar { display: none; } /* Chrome/Safari */
+        
+        .slides a { 
+            flex: 0 0 100%; 
+            width: 100%; 
+            scroll-snap-align: start; 
+            position: relative; 
+            display: block; 
+        }
         .slides img { width: 100%; height: 350px; object-fit: cover; display: block; } 
 
         @media (max-width: 600px) {
@@ -86,7 +103,7 @@
 
         .play-now-overlay { position: absolute; right: 20px; bottom: 20px; background: rgba(255, 255, 255, 0.95); color: #222; padding: 10px 25px; border-radius: 30px; font-weight: 800; font-size: 15px; text-decoration: none; box-shadow: 0 4px 15px rgba(0,0,0,0.15); }
         .dots { display: flex; justify-content: center; gap: 8px; margin: 15px 0; }
-        .dot { width: 8px; height: 8px; background: #e0e0e0; border-radius: 50%; }
+        .dot { width: 8px; height: 8px; background: #e0e0e0; border-radius: 50%; transition: transform 0.3s, background 0.3s; }
         .dot.active { background: #555; transform: scale(1.3); }
         
         .more-games-wrap { margin: 30px 0; }
@@ -101,13 +118,10 @@
             background: white; 
             display: block; 
             box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-            /* 动画丝滑过渡 */
             transition: transform 0.2s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.2s ease;
-            /* 移除手机端点击高亮 */
             -webkit-tap-highlight-color: transparent;
         }
 
-        /* PC端：鼠标悬停向上漂移并倾斜5度 */
         @media (hover: hover) {
             .game-item:hover { 
                 transform: translateY(-8px) rotate(5deg); 
@@ -116,11 +130,10 @@
             }
         }
 
-        /* 手机端/通用：手指按住时缩小并倾斜5度 */
         .game-item:active { 
             transform: scale(0.95) rotate(5deg); 
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            transition: transform 0.1s; /* 按下瞬间反馈更快 */
+            transition: transform 0.1s; 
         }
 
         .game-item img { width: 100%; height: 200px; object-fit: cover; display: block; } 
@@ -219,12 +232,50 @@
     let curIndex = 0;
     const slidesEle = document.getElementById('mainSlides');
     const dotEles = document.querySelectorAll('.dot');
-    function startAutoSlide() {
-        curIndex = (curIndex + 1) % 5;
-        if(slidesEle) slidesEle.style.transform = `translateX(-${curIndex * 20}%)`;
-        dotEles.forEach((d, i) => d.classList.toggle('active', i === curIndex));
+    let isUserScrolling = false;
+    let autoSlideTimer;
+
+    // 更新圆点状态
+    function updateDots(index) {
+        dotEles.forEach((d, i) => d.classList.toggle('active', i === index));
     }
-    setInterval(startAutoSlide, 3500); 
+
+    // 自动轮播逻辑
+    function startAutoSlide() {
+        autoSlideTimer = setInterval(() => {
+            if (!isUserScrolling) {
+                curIndex = (curIndex + 1) % 5;
+                slidesEle.scrollTo({
+                    left: slidesEle.offsetWidth * curIndex,
+                    behavior: 'smooth'
+                });
+                updateDots(curIndex);
+            }
+        }, 3500);
+    }
+
+    // 监听滑动事件来同步圆点
+    slidesEle.addEventListener('scroll', () => {
+        const index = Math.round(slidesEle.scrollLeft / slidesEle.offsetWidth);
+        if (curIndex !== index) {
+            curIndex = index;
+            updateDots(curIndex);
+        }
+    });
+
+    // 手指触摸时暂停自动轮播
+    slidesEle.addEventListener('touchstart', () => {
+        isUserScrolling = true;
+        clearInterval(autoSlideTimer);
+    });
+
+    // 手指离开后重启自动轮播
+    slidesEle.addEventListener('touchend', () => {
+        isUserScrolling = false;
+        startAutoSlide();
+    });
+
+    startAutoSlide(); 
 </script>
 
 </body>
