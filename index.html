@@ -23,46 +23,45 @@
             background-color: #f7f7f7; 
         }
 
-        /* 2. 核心容器自适应：模仿 Carrd 的 Box 比例 */
+        /* 2. 核心容器自适应 */
         .container { 
             background: var(--main-bg); 
             margin: 0 auto; 
             padding: 15px; 
             box-sizing: border-box;
-            width: 100%; /* 手机端默认全屏 */
+            width: 100%; 
             min-height: 100vh;
             display: flex;
             flex-direction: column;
             transition: all 0.3s ease;
         }
 
-        /* 3. 针对 PC 端的大屏幕优化：这里是解决“太窄”问题的关键 */
+        /* 3. PC 端优化 */
         @media (min-width: 800px) {
             body {
-                padding: 50px 0; /* PC端上下留白，更有呼吸感 */
+                padding: 50px 0; 
             }
             .container {
-                /* 调整此处的宽度百分比或像素，直到你满意图1那种感觉 */
-                width: 75%;       /* 让宽度占屏幕的 75% */
-                max-width: 1000px; /* 但最大不超过 1000px，防止在大显示器上太散 */
-                min-width: 800px;  /* 保证在 PC 上有足够的宽度展示 3 列游戏 */
+                width: 75%;       
+                max-width: 1000px; 
+                min-width: 800px;  
                 min-height: auto; 
-                border-radius: 40px; /* 更大的圆角，更像 Carrd 的插画风 */
-                box-shadow: 0 30px 80px rgba(0,0,0,0.12); /* 更有层次感的投影 */
+                border-radius: 40px; 
+                box-shadow: 0 30px 80px rgba(0,0,0,0.12); 
                 border: 1px solid rgba(0,0,0,0.03);
-                padding: 40px;     /* PC 端内部间距加大，显得更高档 */
+                padding: 40px;     
             }
         }
 
-        /* 4. 游戏网格：PC端维持 3 列，但间距加大 */
+        /* 4. 游戏网格 */
         .game-grid { 
             display: grid; 
             grid-template-columns: repeat(3, 1fr); 
-            gap: 20px; /* PC端间距加大，对应图1的感觉 */
+            gap: 20px; 
             margin-top: 25px; 
         }
 
-        /* 5. 手机端微调：屏幕小的时候间距变小 */
+        /* 5. 手机端微调 */
         @media (max-width: 600px) {
             .container { padding: 15px; }
             .game-grid { gap: 10px; }
@@ -73,15 +72,14 @@
         .custom-link, .footer-links a { text-decoration: underline; color: #666; transition: color 0.2s; cursor: pointer; font-size: 14px; }
         .custom-link:hover, .footer-links a:hover { color: var(--hover-blue) !important; }
         .logo-box { padding: 10px 0; display: flex; align-items: center; justify-content: flex-start; }
-        .logo-box img { height: 40px; object-fit: contain; } /* Logo稍微放大一点点 */
+        .logo-box img { height: 40px; object-fit: contain; } 
         .line { border: 0; border-top: 1px solid #eee; margin: 15px 0; }
         
         .slider-container { position: relative; width: 100%; border-radius: 25px; overflow: hidden; box-shadow: 0 8px 25px rgba(0,0,0,0.1); }
         .slides { display: flex; transition: transform 0.5s ease-in-out; width: 500%; }
         .slides a { width: 20%; position: relative; display: block; }
-        .slides img { width: 100%; height: 350px; object-fit: cover; display: block; } /* 轮播图在宽屏下高度调高 */
+        .slides img { width: 100%; height: 350px; object-fit: cover; display: block; } 
 
-        /* 针对手机端调低轮播图高度 */
         @media (max-width: 600px) {
             .slides img { height: 210px; }
         }
@@ -95,11 +93,38 @@
         .more-btn { display: inline-block; background: linear-gradient(180deg, #ffffff 0%, #f4f4f4 100%); border: 1px solid #ddd; padding: 15px 80px; border-radius: 40px; text-decoration: none; color: #333; font-weight: bold; font-size: 18px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); transition: 0.2s; }
         .more-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 15px rgba(0,0,0,0.1); }
 
-        .game-item { text-decoration: none; border-radius: 18px; overflow: hidden; background: white; display: block; transition: transform 0.3s; box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
-        .game-item:hover { transform: translateY(-5px); }
-        .game-item img { width: 100%; height: 200px; object-fit: cover; display: block; } /* PC端图片显示更大 */
+        /* 游戏项目基础样式 */
+        .game-item { 
+            text-decoration: none; 
+            border-radius: 18px; 
+            overflow: hidden; 
+            background: white; 
+            display: block; 
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            /* 动画丝滑过渡 */
+            transition: transform 0.2s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.2s ease;
+            /* 移除手机端点击高亮 */
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        /* PC端：鼠标悬停向上漂移并倾斜5度 */
+        @media (hover: hover) {
+            .game-item:hover { 
+                transform: translateY(-8px) rotate(5deg); 
+                box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+                z-index: 5;
+            }
+        }
+
+        /* 手机端/通用：手指按住时缩小并倾斜5度 */
+        .game-item:active { 
+            transform: scale(0.95) rotate(5deg); 
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            transition: transform 0.1s; /* 按下瞬间反馈更快 */
+        }
+
+        .game-item img { width: 100%; height: 200px; object-fit: cover; display: block; } 
         
-        /* 手机端图片高度恢复 */
         @media (max-width: 600px) {
             .game-item img { height: 110px; }
             .game-item { border-radius: 12px; }
