@@ -8,11 +8,15 @@
     <style>
         :root { --main-bg: #ffffff; --hover-blue: #1a73e8; }
         body { font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; margin: 0; padding: 0; text-align: center; color: #333; background-image: url('images/heart-bg.png'); background-size: cover; background-position: center; background-attachment: fixed; background-color: #f7f7f7; }
+        
         .container { background: var(--main-bg); margin: 0 auto; padding: 15px; box-sizing: border-box; width: 100%; min-height: 100vh; display: flex; flex-direction: column; transition: all 0.3s ease; }
         @media (min-width: 800px) { body { padding: 50px 0; } .container { width: 75%; max-width: 1000px; min-width: 800px; min-height: auto; border-radius: 40px; box-shadow: 0 30px 80px rgba(0,0,0,0.12); border: 1px solid rgba(0,0,0,0.03); padding: 40px; } }
+        
         .logo-box { padding: 10px 0; display: flex; align-items: center; justify-content: flex-start; }
         .logo-box img { height: 40px; object-fit: contain; } 
         .line { border: 0; border-top: 1px solid #eee; margin: 15px 0; }
+        
+        /* 轮播图 */
         .slider-container { position: relative; width: 100%; border-radius: 25px; overflow: hidden; box-shadow: 0 8px 25px rgba(0,0,0,0.1); }
         .slides { display: flex; width: 100%; overflow-x: auto; scroll-snap-type: x mandatory; scroll-behavior: smooth; scrollbar-width: none; -ms-overflow-style: none; }
         .slides::-webkit-scrollbar { display: none; }
@@ -20,9 +24,42 @@
         .slides img { width: 100%; height: 350px; object-fit: cover; display: block; } 
         @media (max-width: 600px) { .slides img { height: 210px; } }
         .play-now-overlay { position: absolute; right: 20px; bottom: 20px; background: rgba(255, 255, 255, 0.95); color: #222; padding: 10px 25px; border-radius: 30px; font-weight: 800; font-size: 15px; text-decoration: none; box-shadow: 0 4px 15px rgba(0,0,0,0.15); }
+        
+        /* 圆点选择器 */
         .dots { display: flex; justify-content: center; gap: 8px; margin: 15px 0; }
-        .dot { width: 8px; height: 8px; background: #e0e0e0; border-radius: 50%; transition: transform 0.3s, background 0.3s; }
+        .dot { width: 10px; height: 10px; background: #e0e0e0; border-radius: 50%; transition: all 0.3s; cursor: pointer; border: none; outline: none; }
         .dot.active { background: #555; transform: scale(1.3); }
+
+        /* 实体感立体按钮优化 */
+        .more-games-wrap { margin: 25px 0; }
+        .more-btn { 
+            display: inline-block; 
+            background: linear-gradient(to bottom, #ffffff 0%, #f9f9f9 100%); 
+            padding: 16px 55px; 
+            border-radius: 35px; 
+            text-decoration: none; 
+            color: #333; 
+            font-weight: 800; 
+            font-size: 17px;
+            border: 1px solid #dcdcdc;
+            /* 关键：使用实体阴影模拟侧面厚度 */
+            box-shadow: 0 6px 0px #bbb, 0 12px 20px rgba(0,0,0,0.1); 
+            transition: all 0.05s ease;
+            position: relative;
+            top: 0;
+            -webkit-tap-highlight-color: transparent;
+        }
+        /* 点击时的物理下沉反馈 */
+        .more-btn:active { 
+            top: 4px; 
+            box-shadow: 0 2px 0px #bbb, 0 5px 10px rgba(0,0,0,0.1); 
+            background: #f2f2f2;
+        }
+        @media (hover: hover) {
+            .more-btn:hover { background: #fff; transform: translateY(-2px); box-shadow: 0 8px 0px #bbb, 0 12px 25px rgba(0,0,0,0.15); }
+            .more-btn:hover:active { top: 4px; transform: translateY(0); }
+        }
+
         .game-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 25px; }
         @media (max-width: 600px) { .game-grid { gap: 10px; } .game-item img { height: 110px; } }
         .game-item { text-decoration: none; border-radius: 18px; overflow: hidden; background: white; display: block; box-shadow: 0 4px 10px rgba(0,0,0,0.05); transition: transform 0.2s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.2s ease; -webkit-tap-highlight-color: transparent; }
@@ -30,8 +67,8 @@
         .game-item:active { transform: scale(0.95) rotate(5deg); box-shadow: 0 2px 5px rgba(0,0,0,0.1); transition: transform 0.1s; }
         .game-item img { width: 100%; height: 200px; object-fit: cover; display: block; } 
         .label { color: white; padding: 6px 0; font-size: 12px; font-weight: bold; }
-        .ad-container { width: 100%; min-height: 120px; background: #fafafa; margin: 35px 0; border-radius: 15px; display: flex; align-items: center; justify-content: center; color: #ccc; font-size: 13px; border: 1px dashed #eee; }
         
+        .ad-container { width: 100%; min-height: 120px; background: #fafafa; margin: 35px 0; border-radius: 15px; display: flex; align-items: center; justify-content: center; color: #ccc; font-size: 13px; border: 1px dashed #eee; }
         .compliance-info { text-align: left; background: #fff; padding: 30px; border-radius: 20px; margin: 30px 0; border: 1px solid #f0f0f0; }
         .category-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 15px; margin-top: 20px; }
         .category-item { display: block; text-decoration: none; color: inherit; padding: 18px; border-radius: 16px; background: #f9f9f9; border: 1px solid #efefef; transition: all 0.2s ease; -webkit-tap-highlight-color: transparent; }
@@ -64,19 +101,23 @@
         </div>
     </div>
     <div class="dots" id="mainDots">
-        <div class="dot active"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div>
+        <div class="dot active" onclick="goToSlide(0)"></div>
+        <div class="dot" onclick="goToSlide(1)"></div>
+        <div class="dot" onclick="goToSlide(2)"></div>
+        <div class="dot" onclick="goToSlide(3)"></div>
+        <div class="dot" onclick="goToSlide(4)"></div>
     </div>
 
     <div class="more-games-wrap">
-        <a href="more.html" class="more-btn" style="display: inline-block; background: #eee; padding: 15px 50px; border-radius: 30px; text-decoration: none; color: #333; font-weight: bold;">🎮 Explore All Games</a>
-        <p style="font-size: 13px; color: #888; margin-top: 10px;">Discover the best free online H5 games and premium mobile apps.</p>
+        <a href="more.html" class="more-btn">🎮 Explore All Games</a>
+        <p style="font-size: 13px; color: #888; margin-top: 15px;">Discover the best free online H5 games and premium mobile apps.</p>
     </div>
 
     <div class="line"></div>
     
     <div style="text-align: left; padding: 10px 0;">
-        <h2 style="font-size: 20px; color: #222;">Top Recommended Mobile & H5 Titles</h2>
-        <p style="font-size: 14px; color: #666; line-height: 1.5;">Check out our top-rated collection of casual games. Whether you like puzzle-solving on iOS or instant H5 racing in your browser, trythis.online offers the best gaming experience with no friction.</p>
+        <h2 style="font-size: 20px; color: #222;">Top Recommended Instant H5 Games</h2>
+        <p style="font-size: 14px; color: #666; line-height: 1.5;">Check out our top-rated collection of casual H5 titles. Whether you're into quick-play puzzles or instant racing action in your mobile browser, trythis.online offers a seamless gaming experience with no downloads required.</p>
     </div>
 
     <div class="game-grid">
@@ -151,6 +192,16 @@
     let autoSlideTimer;
 
     function updateDots(index) { dotEles.forEach((d, i) => d.classList.toggle('active', i === index)); }
+    
+    // 圆点点击切换功能
+    function goToSlide(index) {
+        curIndex = index;
+        slidesEle.scrollTo({ left: slidesEle.offsetWidth * index, behavior: 'smooth' });
+        updateDots(index);
+        resetAutoSlide(); 
+    }
+
+    // 自动轮播：加速至 1500ms
     function startAutoSlide() {
         autoSlideTimer = setInterval(() => {
             if (!isUserScrolling) {
@@ -158,14 +209,25 @@
                 slidesEle.scrollTo({ left: slidesEle.offsetWidth * curIndex, behavior: 'smooth' });
                 updateDots(curIndex);
             }
-        }, 3500);
+        }, 1500);
     }
+
+    function resetAutoSlide() {
+        clearInterval(autoSlideTimer);
+        startAutoSlide();
+    }
+
     slidesEle.addEventListener('scroll', () => {
         const index = Math.round(slidesEle.scrollLeft / slidesEle.offsetWidth);
         if (curIndex !== index) { curIndex = index; updateDots(curIndex); }
     });
+
+    // 交互优化：PC 悬停暂停，手机触摸暂停
+    slidesEle.addEventListener('mouseenter', () => { isUserScrolling = true; clearInterval(autoSlideTimer); });
+    slidesEle.addEventListener('mouseleave', () => { isUserScrolling = false; startAutoSlide(); });
     slidesEle.addEventListener('touchstart', () => { isUserScrolling = true; clearInterval(autoSlideTimer); });
     slidesEle.addEventListener('touchend', () => { isUserScrolling = false; startAutoSlide(); });
+
     startAutoSlide(); 
 </script>
 </body>
