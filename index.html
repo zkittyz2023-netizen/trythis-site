@@ -2,230 +2,145 @@
 <html lang="en">
 <head>
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4853812575495470" crossorigin="anonymous"></script>
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>trythis.online - Play Instantly</title>
+    <title>trythis.online - Play Best H5 Games Instantly</title>
     <style>
         :root { --main-bg: #ffffff; --hover-blue: #1a73e8; }
-        
-        /* 1. 背景设置 */
-        body { 
-            font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; 
-            margin: 0; 
-            padding: 0;
-            text-align: center; 
-            color: #333; 
-            background-image: url('images/heart-bg.png');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed; 
-            background-color: #f7f7f7; 
-        }
-
-        /* 2. 核心容器自适应 */
-        .container { 
-            background: var(--main-bg); 
-            margin: 0 auto; 
-            padding: 15px; 
-            box-sizing: border-box;
-            width: 100%; 
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            transition: all 0.3s ease;
-        }
-
-        /* 3. PC 端优化 */
-        @media (min-width: 800px) {
-            body {
-                padding: 50px 0; 
-            }
-            .container {
-                width: 75%;       
-                max-width: 1000px; 
-                min-width: 800px;  
-                min-height: auto; 
-                border-radius: 40px; 
-                box-shadow: 0 30px 80px rgba(0,0,0,0.12); 
-                border: 1px solid rgba(0,0,0,0.03);
-                padding: 40px;     
-            }
-        }
-
-        /* 4. 游戏网格 */
-        .game-grid { 
-            display: grid; 
-            grid-template-columns: repeat(3, 1fr); 
-            gap: 20px; 
-            margin-top: 25px; 
-        }
-
-        /* 5. 手机端微调 */
-        @media (max-width: 600px) {
-            .container { padding: 15px; }
-            .game-grid { gap: 10px; }
-            .game-item img { height: 110px; }
-        }
-
-        /* 基础功能样式 */
-        .custom-link, .footer-links a { text-decoration: underline; color: #666; transition: color 0.2s; cursor: pointer; font-size: 14px; }
-        .custom-link:hover, .footer-links a:hover { color: var(--hover-blue) !important; }
+        body { font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; margin: 0; padding: 0; text-align: center; color: #333; background-image: url('images/heart-bg.png'); background-size: cover; background-position: center; background-attachment: fixed; background-color: #f7f7f7; }
+        .container { background: var(--main-bg); margin: 0 auto; padding: 15px; box-sizing: border-box; width: 100%; min-height: 100vh; display: flex; flex-direction: column; transition: all 0.3s ease; }
+        @media (min-width: 800px) { body { padding: 50px 0; } .container { width: 75%; max-width: 1000px; min-width: 800px; min-height: auto; border-radius: 40px; box-shadow: 0 30px 80px rgba(0,0,0,0.12); border: 1px solid rgba(0,0,0,0.03); padding: 40px; } }
         .logo-box { padding: 10px 0; display: flex; align-items: center; justify-content: flex-start; }
         .logo-box img { height: 40px; object-fit: contain; } 
         .line { border: 0; border-top: 1px solid #eee; margin: 15px 0; }
-        
-        /* 轮播图容器 - 增加手动滑动支持 */
         .slider-container { position: relative; width: 100%; border-radius: 25px; overflow: hidden; box-shadow: 0 8px 25px rgba(0,0,0,0.1); }
-        .slides { 
-            display: flex; 
-            width: 100%; 
-            overflow-x: auto; 
-            scroll-snap-type: x mandatory; 
-            scroll-behavior: smooth; 
-            scrollbar-width: none; /* Firefox */
-            -ms-overflow-style: none; /* IE */
-        }
-        .slides::-webkit-scrollbar { display: none; } /* Chrome/Safari */
-        
-        .slides a { 
-            flex: 0 0 100%; 
-            width: 100%; 
-            scroll-snap-align: start; 
-            position: relative; 
-            display: block; 
-        }
+        .slides { display: flex; width: 100%; overflow-x: auto; scroll-snap-type: x mandatory; scroll-behavior: smooth; scrollbar-width: none; -ms-overflow-style: none; }
+        .slides::-webkit-scrollbar { display: none; }
+        .slides a { flex: 0 0 100%; width: 100%; scroll-snap-align: start; position: relative; display: block; }
         .slides img { width: 100%; height: 350px; object-fit: cover; display: block; } 
-
-        @media (max-width: 600px) {
-            .slides img { height: 210px; }
-        }
-
+        @media (max-width: 600px) { .slides img { height: 210px; } }
         .play-now-overlay { position: absolute; right: 20px; bottom: 20px; background: rgba(255, 255, 255, 0.95); color: #222; padding: 10px 25px; border-radius: 30px; font-weight: 800; font-size: 15px; text-decoration: none; box-shadow: 0 4px 15px rgba(0,0,0,0.15); }
         .dots { display: flex; justify-content: center; gap: 8px; margin: 15px 0; }
         .dot { width: 8px; height: 8px; background: #e0e0e0; border-radius: 50%; transition: transform 0.3s, background 0.3s; }
         .dot.active { background: #555; transform: scale(1.3); }
-        
-        .more-games-wrap { margin: 30px 0; }
-        .more-btn { display: inline-block; background: linear-gradient(180deg, #ffffff 0%, #f4f4f4 100%); border: 1px solid #ddd; padding: 15px 80px; border-radius: 40px; text-decoration: none; color: #333; font-weight: bold; font-size: 18px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); transition: 0.2s; }
-        .more-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 15px rgba(0,0,0,0.1); }
-
-        /* 游戏项目基础样式 */
-        .game-item { 
-            text-decoration: none; 
-            border-radius: 18px; 
-            overflow: hidden; 
-            background: white; 
-            display: block; 
-            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-            transition: transform 0.2s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.2s ease;
-            -webkit-tap-highlight-color: transparent;
-        }
-
-        @media (hover: hover) {
-            .game-item:hover { 
-                transform: translateY(-8px) rotate(5deg); 
-                box-shadow: 0 15px 30px rgba(0,0,0,0.1);
-                z-index: 5;
-            }
-        }
-
-        .game-item:active { 
-            transform: scale(0.95) rotate(5deg); 
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            transition: transform 0.1s; 
-        }
-
+        .game-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 25px; }
+        @media (max-width: 600px) { .game-grid { gap: 10px; } .game-item img { height: 110px; } }
+        .game-item { text-decoration: none; border-radius: 18px; overflow: hidden; background: white; display: block; box-shadow: 0 4px 10px rgba(0,0,0,0.05); transition: transform 0.2s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.2s ease; -webkit-tap-highlight-color: transparent; }
+        @media (hover: hover) { .game-item:hover { transform: translateY(-8px) rotate(5deg); box-shadow: 0 15px 30px rgba(0,0,0,0.1); z-index: 5; } }
+        .game-item:active { transform: scale(0.95) rotate(5deg); box-shadow: 0 2px 5px rgba(0,0,0,0.1); transition: transform 0.1s; }
         .game-item img { width: 100%; height: 200px; object-fit: cover; display: block; } 
-        
-        @media (max-width: 600px) {
-            .game-item img { height: 110px; }
-            .game-item { border-radius: 12px; }
-        }
-
         .label { color: white; padding: 6px 0; font-size: 12px; font-weight: bold; }
         .ad-container { width: 100%; min-height: 120px; background: #fafafa; margin: 35px 0; border-radius: 15px; display: flex; align-items: center; justify-content: center; color: #ccc; font-size: 13px; border: 1px dashed #eee; }
-        .compliance-info { text-align: left; background: #fff; padding: 25px; border-radius: 20px; margin: 30px 0; border: 1px solid #f0f0f0; }
-        .compliance-info h2 { font-size: 18px; color: #333; margin-top: 0; }
-        .compliance-info p { font-size: 14px; color: #777; margin: 10px 0; line-height: 1.7; }
+        
+        .compliance-info { text-align: left; background: #fff; padding: 30px; border-radius: 20px; margin: 30px 0; border: 1px solid #f0f0f0; }
+        .category-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 15px; margin-top: 20px; }
+        .category-item { display: block; text-decoration: none; color: inherit; padding: 18px; border-radius: 16px; background: #f9f9f9; border: 1px solid #efefef; transition: all 0.2s ease; -webkit-tap-highlight-color: transparent; }
+        @media (hover: hover) {
+            .category-item:hover { background: #fff; border-color: #1a73e8; transform: translateY(-3px); box-shadow: 0 8px 20px rgba(0,0,0,0.06); }
+            .category-item:hover h4 { color: #1a73e8; text-decoration: underline; }
+            .category-item:hover .arrow-hint { opacity: 1; transform: translateX(5px); }
+        }
+        .category-item:active { transform: scale(0.97); background: #f0f0f0; }
+        .category-item h4 { margin: 0 0 8px 0; font-size: 16px; display: flex; align-items: center; justify-content: space-between; }
+        .category-item p { font-size: 13px; color: #666; line-height: 1.6; margin: 0; }
+        .arrow-hint { color: #1a73e8; font-weight: bold; transition: all 0.3s ease; }
         .footer-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; padding: 30px 0; border-top: 1px solid #eee; }
+        .footer-links a { text-decoration: underline; color: #666; font-size: 14px; }
     </style>
 </head>
 <body>
 
 <div class="container">
-    <div class="logo-box">
-        <img src="images/logo.png" alt="trythis.online">
-    </div>
-
+    <div class="logo-box"><img src="images/logo.png" alt="trythis.online logo"></div>
     <div class="line"></div>
 
     <div class="slider-container">
         <div class="slides" id="mainSlides">
-            <a href="轮播链接1" target="_blank"><img src="images/banner1.png"><span class="play-now-overlay">Play Now</span></a>
-            <a href="轮播链接2" target="_blank"><img src="images/banner2.png"><span class="play-now-overlay">Play Now</span></a>
-            <a href="轮播链接3" target="_blank"><img src="images/banner3.png"><span class="play-now-overlay">Play Now</span></a>
-            <a href="轮播链接4" target="_blank"><img src="images/banner4.png"><span class="play-now-overlay">Play Now</span></a>
-            <a href="轮播链接5" target="_blank"><img src="images/banner5.png"><span class="play-now-overlay">Play Now</span></a>
+            <a href="https://apps.apple.com/us/app/block-match-detective-puzzle/id6756774091" target="_blank"><img src="images/Banner1_Block Match_ Detective Puzzle.png"><span class="play-now-overlay">Get on App Store</span></a>
+            <a href="https://apps.apple.com/us/app/bmx-cycle-sim-bicycle-games/id6752950220" target="_blank"><img src="images/Banner2_BMX Cycle Sim Bicycle Games.png"><span class="play-now-overlay">Get on App Store</span></a>
+            <a href="https://apps.apple.com/us/app/orders-up-block-puzzle/id6755723868" target="_blank"><img src="images/Banner3_Orders Up_ Block Puzzle.png"><span class="play-now-overlay">Get on App Store</span></a>
+            <a href="https://apps.apple.com/us/app/stack-solitaire-puzzle/id6756317321" target="_blank"><img src="images/Banner4_Stack Solitaire Puzzle.png"><span class="play-now-overlay">Get on App Store</span></a>
+            <a href="https://apps.apple.com/us/app/sticker-merge-puzzle/id6756307828" target="_blank"><img src="images/Banner5_Sticker Merge Puzzle.png"><span class="play-now-overlay">Get on App Store</span></a>
         </div>
     </div>
-
     <div class="dots" id="mainDots">
         <div class="dot active"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div>
     </div>
 
     <div class="more-games-wrap">
-        <a href="more.html" target="_blank" class="more-btn">🎮 More Games</a>
-        <div class="click-here-text" style="font-size: 14px; color: #999; margin-top: 12px;">
-            Can't find your game? <a href="more.html" target="_blank" class="custom-link">Click here</a>
-        </div>
+        <a href="more.html" class="more-btn" style="display: inline-block; background: #eee; padding: 15px 50px; border-radius: 30px; text-decoration: none; color: #333; font-weight: bold;">🎮 Explore All Games</a>
+        <p style="font-size: 13px; color: #888; margin-top: 10px;">Discover the best free online H5 games and premium mobile apps.</p>
     </div>
 
     <div class="line"></div>
-    <p style="font-size:14px; color:#aaa; text-align:left; margin-bottom: 15px; font-weight: 500;">Play Instantly (No Download)</p>
+    
+    <div style="text-align: left; padding: 10px 0;">
+        <h2 style="font-size: 20px; color: #222;">Top Recommended Mobile & H5 Titles</h2>
+        <p style="font-size: 14px; color: #666; line-height: 1.5;">Check out our top-rated collection of casual games. Whether you like puzzle-solving on iOS or instant H5 racing in your browser, trythis.online offers the best gaming experience with no friction.</p>
+    </div>
 
     <div class="game-grid">
-        <a href="https://gamedistribution.com/games/?collectionID=2" target="_blank" class="game-item">
-            <img src="images/game1.jpg"><div class="label" style="background:#8e2a2a;">Casual</div>
+        <a href="category.html?type=casual" class="game-item">
+            <img src="images/game1.jpg"><div class="label" style="background:#8e2a2a;">Casual Collection</div>
         </a>
-        <a href="https://gamedistribution.com/games/?collectionID=3" target="_blank" class="game-item">
-            <img src="images/game2.jpg"><div class="label" style="background:#d35400;">Puzzle</div>
+        <a href="category.html?type=puzzle" class="game-item">
+            <img src="images/game2.jpg"><div class="label" style="background:#d35400;">Puzzle Games</div>
         </a>
-        <a href="https://gamedistribution.com/games/?collectionID=24" target="_blank" class="game-item">
-            <img src="images/game3.jpg"><div class="label" style="background:#2c3e50;">Adventure</div>
+        <a href="category.html?type=adventure" class="game-item">
+            <img src="images/game3.jpg"><div class="label" style="background:#2c3e50;">Adventure Mode</div>
         </a>
-        <a href="https://gamedistribution.com/games/?collectionID=4" target="_blank" class="game-item">
-            <img src="images/game4.jpg"><div class="label" style="background:#c0392b;">Dress-up</div>
+        <a href="category.html?type=dressup" class="game-item">
+            <img src="images/game4.jpg"><div class="label" style="background:#c0392b;">Dress-up Fun</div>
         </a>
-        <a href="https://gamedistribution.com/games/?collectionID=1" target="_blank" class="game-item">
-            <img src="images/game5.jpg"><div class="label" style="background:#2980b9;">Racing</div>
+        <a href="category.html?type=racing" class="game-item">
+            <img src="images/game5.jpg"><div class="label" style="background:#2980b9;">Racing Track</div>
         </a>
-        <a href="https://gamedistribution.com/games/?collectionID=5" target="_blank" class="game-item">
-            <img src="images/game6.jpg"><div class="label" style="background:#27ae60;">Shooter</div>
+        <a href="category.html?type=shooter" class="game-item">
+            <img src="images/game6.jpg"><div class="label" style="background:#27ae60;">Shooter Action</div>
         </a>
     </div>
 
-    <div class="ad-container">ADVERTISEMENT</div>
+    <div class="ad-container">ADVERTISEMENT - SUPPORT OUR FREE SERVICE</div>
 
     <div class="compliance-info">
-        <h2>About TryThis.online</h2>
-        <p>TryThis.online provides a curated selection of free H5 games. Play instantly in your browser with no installation required. We focus on providing the best user experience for casual gamers worldwide.</p>
-        <h2>Contact Us</h2>
-        <p>Email: <b>sssimple.game@gmail.com</b></p>
+        <h2 style="font-size: 22px; color: #222;">Professional Game Curations</h2>
+        <p style="font-size: 15px; color: #555;">At trythis.online, we specialize in discovers and reviews of high-rated mobile apps and H5 games. Click below to explore our curated categories:</p>
+
+        <div class="category-grid">
+            <a href="category.html?type=exclusive" class="category-item">
+                <h4><span>🚀 Exclusive Picks</span> <span class="arrow-hint">→</span></h4>
+                <p>Click to explore our hand-picked titles. We feature unique mechanics and high-performance H5 gems optimized for trythis.online users.</p>
+            </a>
+            <a href="category.html?type=hot" class="category-item">
+                <h4><span>🔥 Hot Trending</span> <span class="arrow-hint">→</span></h4>
+                <p>Stay updated with what the community is playing. Track viral trends and enjoy the most addictive gameplay experiences now.</p>
+            </a>
+            <a href="category.html?type=brain" class="category-item">
+                <h4><span>🧠 Brain Teasers</span> <span class="arrow-hint">→</span></h4>
+                <p>Boost your cognitive skills with puzzles and logic games. Perfect for quick mental exercises during your daily breaks.</p>
+            </a>
+            <a href="category.html?type=new" class="category-item">
+                <h4><span>🌟 Best New Games</span> <span class="arrow-hint">→</span></h4>
+                <p>Discover the latest releases in our catalog. We test for performance and stability so you can enjoy fresh gaming every week.</p>
+            </a>
+            <a href="category.html?type=editor" class="category-item">
+                <h4><span>🏆 Editor's Pick</span> <span class="arrow-hint">→</span></h4>
+                <p>Explore the "must-play" titles recommended by our professional editors, selected for their exceptional design and storytelling.</p>
+            </a>
+            <a href="category.html?type=store" class="category-item">
+                <h4><span>💎 Virtual Store</span> <span class="arrow-hint">→</span></h4>
+                <p>Dive into games with deep progression and rewarding systems. Experience high-quality graphics and immersive in-app features.</p>
+            </a>
+        </div>
     </div>
 
     <div class="footer-links">
-        <a href="https://gamedistribution.com/games/?collectionID=2" target="_blank">exclusive</a>
-        <a href="https://gamedistribution.com/games/?collectionID=3" target="_blank">hot games</a>
-        <a href="https://gamedistribution.com/games/?collectionID=24" target="_blank">brain teasers</a>
-        <a href="https://gamedistribution.com/games/?collectionID=4" target="_blank">best new</a>
-        <a href="https://gamedistribution.com/games/?collectionID=1" target="_blank">editor's pick</a>
-        <a href="https://gamedistribution.com/games/?collectionID=5" target="_blank">in-game purchase</a>
+        <a href="about.html">About Us</a>
+        <a href="contact.html">Contact Us</a>
+        <a href="privacy.html">Privacy Policy</a>
+        <a href="more.html">More Games</a>
     </div>
-
-    <div style="text-align: center; padding: 30px 0;">
-        <a href="privacy.html" class="custom-link">Privacy Policy</a>
-    </div>
+    <div style="text-align: center; padding: 20px 0; font-size: 12px; color: #bbb;">&copy; 2026 trythis.online - All Rights Reserved.</div>
 </div>
 
 <script>
@@ -235,48 +150,23 @@
     let isUserScrolling = false;
     let autoSlideTimer;
 
-    // 更新圆点状态
-    function updateDots(index) {
-        dotEles.forEach((d, i) => d.classList.toggle('active', i === index));
-    }
-
-    // 自动轮播逻辑
+    function updateDots(index) { dotEles.forEach((d, i) => d.classList.toggle('active', i === index)); }
     function startAutoSlide() {
         autoSlideTimer = setInterval(() => {
             if (!isUserScrolling) {
                 curIndex = (curIndex + 1) % 5;
-                slidesEle.scrollTo({
-                    left: slidesEle.offsetWidth * curIndex,
-                    behavior: 'smooth'
-                });
+                slidesEle.scrollTo({ left: slidesEle.offsetWidth * curIndex, behavior: 'smooth' });
                 updateDots(curIndex);
             }
         }, 3500);
     }
-
-    // 监听滑动事件来同步圆点
     slidesEle.addEventListener('scroll', () => {
         const index = Math.round(slidesEle.scrollLeft / slidesEle.offsetWidth);
-        if (curIndex !== index) {
-            curIndex = index;
-            updateDots(curIndex);
-        }
+        if (curIndex !== index) { curIndex = index; updateDots(curIndex); }
     });
-
-    // 手指触摸时暂停自动轮播
-    slidesEle.addEventListener('touchstart', () => {
-        isUserScrolling = true;
-        clearInterval(autoSlideTimer);
-    });
-
-    // 手指离开后重启自动轮播
-    slidesEle.addEventListener('touchend', () => {
-        isUserScrolling = false;
-        startAutoSlide();
-    });
-
+    slidesEle.addEventListener('touchstart', () => { isUserScrolling = true; clearInterval(autoSlideTimer); });
+    slidesEle.addEventListener('touchend', () => { isUserScrolling = false; startAutoSlide(); });
     startAutoSlide(); 
 </script>
-
 </body>
 </html>

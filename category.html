@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4853812575495470" crossorigin="anonymous"></script>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="pageTitle">Game Category - trythis.online</title>
+    <style>
+        :root { --primary-blue: #1a73e8; --bg-gray: #f8f9fa; }
+        body { font-family: -apple-system, system-ui, sans-serif; margin: 0; background: var(--bg-gray); color: #333; line-height: 1.6; }
+        .page-wrapper { max-width: 900px; margin: 0 auto; background: #fff; min-height: 100vh; box-shadow: 0 0 40px rgba(0,0,0,0.05); }
+        .nav-header { padding: 15px 25px; display: flex; align-items: center; border-bottom: 1px solid #eee; background: #fff; position: sticky; top: 0; z-index: 100; }
+        .back-link { text-decoration: none; color: var(--primary-blue); font-weight: bold; font-size: 15px; display: flex; align-items: center; }
+        .hero-banner { width: 100%; height: 300px; position: relative; overflow: hidden; background: #222; }
+        .hero-banner img { width: 100%; height: 100%; object-fit: cover; opacity: 0.8; }
+        .hero-overlay { position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(transparent, rgba(0,0,0,0.8)); padding: 40px 25px 20px; color: #fff; text-align: left; }
+        .hero-overlay h1 { margin: 0; font-size: 32px; text-shadow: 0 2px 4px rgba(0,0,0,0.3); }
+        .content-section { padding: 30px 25px; text-align: left; }
+        .content-section h2 { color: #222; border-left: 5px solid var(--primary-blue); padding-left: 15px; margin-bottom: 20px; font-size: 22px; }
+        .description-text { font-size: 16px; color: #555; margin-bottom: 35px; background: #f9f9f9; padding: 20px; border-radius: 12px; border: 1px inset #eee; }
+        .game-frame-box { width: 100%; height: 1200px; border-radius: 15px; overflow: hidden; border: 1px solid #ddd; background: #fff; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+        iframe { width: 100%; height: 100%; border: none; }
+        
+        /* 增加一个明显的广告位占位符，增加审核通过率 */
+        .ad-placeholder { margin: 20px 0; min-height: 90px; background: #fafafa; border: 1px dashed #ddd; display: flex; align-items: center; justify-content: center; color: #999; font-size: 12px; border-radius: 10px; }
+        
+        .footer { padding: 40px 25px; font-size: 13px; color: #999; text-align: center; border-top: 1px solid #eee; margin-top: 40px; }
+        @media (max-width: 600px) { .hero-banner { height: 200px; } .hero-overlay h1 { font-size: 24px; } .game-frame-box { height: 800px; } }
+    </style>
+</head>
+<body>
+
+<div class="page-wrapper">
+    <div class="nav-header">
+        <a href="index.html" class="back-link">← Back to trythis.online</a>
+    </div>
+
+    <div class="hero-banner">
+        <img id="catBanner" src="" alt="Banner">
+        <div class="hero-overlay">
+            <h1 id="catTitle">Category</h1>
+        </div>
+    </div>
+
+    <div class="content-section">
+        <h2 id="sectionHeading">Game Recommendation & Reviews</h2>
+        <div class="description-text" id="catDesc"></div>
+
+        <div class="ad-placeholder">ADVERTISEMENT - SUPPORT OUR SERVICE</div>
+
+        <div class="game-frame-box">
+            <iframe id="gameFrame" src="" allowfullscreen></iframe>
+        </div>
+    </div>
+
+    <div class="footer">&copy; 2026 trythis.online - Quality H5 Gaming Hub</div>
+</div>
+
+<script>
+    const config = {
+        'casual': {
+            title: "Casual Collection",
+            banner: "images/game1.jpg",
+            desc: "Welcome to our Casual Collection! This curated selection is designed for players who want to enjoy gaming without the stress of intense competition. We focus on games with intuitive mechanics and delightful graphics, perfect for relaxing after a busy day.",
+            url: "https://gamedistribution.com/games/?tag=casual"
+        },
+        'puzzle': {
+            title: "Puzzle Games Master",
+            banner: "images/game2.jpg",
+            desc: "Challenge your mind with the best puzzles online. From match-3 classics to complex logic riddles, this category features high-quality brain teasers that provide both entertainment and cognitive stimulation.",
+            url: "https://gamedistribution.com/games/?tag=puzzle"
+        },
+        'adventure': {
+            title: "Adventure Mode",
+            banner: "images/game3.jpg",
+            desc: "Embark on unforgettable journeys! Explore mysterious landscapes, solve quests, and experience thrilling stories in our curated adventure game selection, all optimized for instant play.",
+            url: "https://gamedistribution.com/games/?tag=adventure"
+        },
+        'dressup': {
+            title: "Dress-up Fun",
+            banner: "images/game4.jpg",
+            desc: "Express your unique style! Our dress-up games allow you to experiment with thousands of outfits and accessories. Perfect for creative minds looking for fashion inspiration.",
+            url: "https://gamedistribution.com/games/?tag=dress-up"
+        },
+        'racing': {
+            title: "Racing Track",
+            banner: "images/game5.jpg",
+            desc: "Feel the adrenaline! Our Racing Track collection features high-speed car simulations and intense stunts. Test your reflexes and become the ultimate champion on the track.",
+            url: "https://gamedistribution.com/games/?tag=racing"
+        },
+        'shooter': {
+            title: "Shooter Action",
+            banner: "images/game6.jpg",
+            desc: "Gear up for fast-paced combat. Our Shooter Action category includes tactical missions and target practice titles vetted for quality and smooth performance.",
+            url: "https://gamedistribution.com/games/?tag=shooter"
+        },
+        'exclusive': {
+            title: "Exclusive Picks",
+            banner: "images/game1.jpg",
+            desc: "Exclusive games hand-picked for their unique mechanics and high performance. These titles represent the gold standard of H5 gaming available on trythis.online.",
+            url: "https://gamedistribution.com/games/?collectionID=2"
+        },
+        'hot': {
+            title: "Hot Trending Games",
+            banner: "images/game2.jpg",
+            desc: "What is everyone playing right now? Stay ahead of the curve with our trending section, featuring viral hits and the most addictive gameplay of the season.",
+            url: "https://gamedistribution.com/games/?collectionID=3"
+        },
+        'brain': {
+            title: "Logic & Brain Teasers",
+            banner: "images/game3.jpg",
+            desc: "Sharpen your intellect. These games are specially selected to help improve focus and logic skills while providing a fun break from your routine.",
+            url: "https://gamedistribution.com/games/?collectionID=24"
+        },
+        'new': {
+            title: "Best New Games",
+            banner: "images/game4.jpg",
+            desc: "Fresh from the developers! We update this section weekly with the newest releases that meet our strict quality and stability requirements.",
+            url: "https://gamedistribution.com/games/?collectionID=4"
+        },
+        'editor': {
+            title: "Editor's Choice",
+            banner: "images/game5.jpg",
+            desc: "Our editors have tested hundreds of games; these are the few that we truly loved. High-quality art, music, and gameplay are guaranteed here.",
+            url: "https://gamedistribution.com/games/?collectionID=1"
+        },
+        'store': {
+            title: "Virtual Store Experience",
+            banner: "images/game6.jpg",
+            desc: "Dive deep into immersive worlds with rich progression systems. These games offer long-term value and deep in-game economies for dedicated players.",
+            url: "https://gamedistribution.com/games/?collectionID=5"
+        }
+    };
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const type = urlParams.get('type');
+
+    if (config[type]) {
+        document.getElementById('catTitle').innerText = config[type].title;
+        document.getElementById('catBanner').src = config[type].banner;
+        document.getElementById('catDesc').innerText = config[type].desc;
+        document.getElementById('gameFrame').src = config[type].url;
+        document.getElementById('pageTitle').innerText = config[type].title + " - trythis.online";
+    } else {
+        window.location.href = "index.html";
+    }
+</script>
+
+</body>
+</html>
