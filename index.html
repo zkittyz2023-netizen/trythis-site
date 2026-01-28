@@ -19,7 +19,6 @@
         .container { background: var(--main-bg); margin: 0 auto; padding: 15px; box-sizing: border-box; width: 100%; min-height: 100vh; display: flex; flex-direction: column; transition: all 0.3s ease; }
         @media (min-width: 800px) { body { padding: 50px 0; } .container { width: 75%; max-width: 1000px; min-width: 800px; min-height: auto; border-radius: 40px; box-shadow: 0 30px 80px rgba(0,0,0,0.12); border: 1px solid rgba(0,0,0,0.03); padding: 40px; } }
         
-        /* 优化 Logo 区域 */
         .logo-box { padding: 10px 0; display: flex; align-items: center; justify-content: flex-start; }
         .logo-box a { display: flex; align-items: center; text-decoration: none; }
         .logo-box img { height: 40px; object-fit: contain; cursor: pointer; } 
@@ -31,7 +30,7 @@
         .slides { display: flex; width: 100%; overflow-x: auto; scroll-snap-type: x mandatory; scroll-behavior: smooth; scrollbar-width: none; }
         .slides::-webkit-scrollbar { display: none; }
         .slide-page { flex: 0 0 100%; width: 100%; display: grid; grid-template-columns: 1fr 1fr; gap: 10px; scroll-snap-align: start; padding: 5px; box-sizing: border-box; }
-        .slide-page a { position: relative; display: block; border-radius: 15px; overflow: hidden; }
+        .slide-page a { position: relative; display: block; border-radius: 15px; overflow: hidden; background: #f0f0f0; }
         .slide-page img { width: 100%; height: 280px; object-fit: cover; display: block; } 
         @media (max-width: 600px) { .slide-page img { height: 160px; } }
         
@@ -45,47 +44,25 @@
         .dot { width: 10px; height: 10px; background: #e0e0e0; border-radius: 50%; cursor: pointer; border: none; }
         .dot.active { background: #555; transform: scale(1.3); }
 
-        /* Explore All Games 按钮动画 */
         #moreSection { display: block !important; margin: 30px 0 !important; }
-        .more-btn { 
-            display: inline-block; 
-            background: linear-gradient(to bottom, #ffffff 0%, #f9f9f9 100%); 
-            padding: 16px 55px; 
-            border-radius: 35px; 
-            text-decoration: none; 
-            color: #333; 
-            font-weight: 800; 
-            font-size: 17px; 
-            border: 1px solid #dcdcdc; 
-            box-shadow: 0 6px 0px #bbb, 0 12px 20px rgba(0,0,0,0.1); 
-            transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
-            position: relative; 
-            cursor: pointer;
-            top: 0;
-        }
-        .more-btn:hover { 
-            top: -4px; 
-            box-shadow: 0 10px 0px #bbb, 0 15px 25px rgba(0,0,0,0.15); 
-            background: #fff;
-        }
-        .more-btn:active { 
-            top: 4px; 
-            box-shadow: 0 2px 0px #bbb; 
-        }
+        .more-btn { display: inline-block; background: linear-gradient(to bottom, #ffffff 0%, #f9f9f9 100%); padding: 16px 55px; border-radius: 35px; text-decoration: none; color: #333; font-weight: 800; font-size: 17px; border: 1px solid #dcdcdc; box-shadow: 0 6px 0px #bbb, 0 12px 20px rgba(0,0,0,0.1); transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275); position: relative; cursor: pointer; top: 0; }
+        .more-btn:hover { top: -4px; box-shadow: 0 10px 0px #bbb, 0 15px 25px rgba(0,0,0,0.15); background: #fff; }
+        .more-btn:active { top: 4px; box-shadow: 0 2px 0px #bbb; }
         .btn-subtext { font-size: 13px; color: #888; margin-top: 15px; }
 
-        /* 游戏网格 */
+        /* 游戏网格 - 高清优化 */
         .game-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin-top: 25px; }
         @media (max-width: 600px) { .game-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; } }
         
-        .game-item { 
-            text-decoration: none; border-radius: 18px; overflow: hidden; background: white; 
-            display: block; box-shadow: 0 4px 12px rgba(0,0,0,0.08); position: relative; 
-            transition: transform 0.2s ease; will-change: transform;
-        }
+        .game-item { text-decoration: none; border-radius: 18px; overflow: hidden; background: white; display: block; box-shadow: 0 4px 12px rgba(0,0,0,0.08); position: relative; transition: transform 0.2s ease; }
         .game-item:active { transform: scale(0.96); }
         .game-item .img-wrapper { width: 100%; aspect-ratio: 1/1; background: #eee; overflow: hidden; }
-        .game-item img { width: 100%; height: 100%; object-fit: cover; display: block; image-rendering: -webkit-optimize-contrast; } 
+        .game-item img { 
+            width: 100%; height: 100%; object-fit: cover; display: block; 
+            /* 提高图片渲染清晰度 */
+            image-rendering: -webkit-optimize-contrast; 
+            image-rendering: crisp-edges;
+        } 
         .game-item .g-title { padding: 10px 8px; font-size: 13px; font-weight: bold; color: #333; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; text-align: center; }
         .game-item .g-tag { position: absolute; top: 8px; left: 8px; background: rgba(0,0,0,0.7); color: #fff; font-size: 10px; padding: 3px 8px; border-radius: 8px; z-index: 2; backdrop-filter: blur(2px); }
 
@@ -117,12 +94,12 @@
                     <a href="https://apps.apple.com/us/app/bmx-cycle-sim-bicycle-games/id6752950220" target="_blank"><img src="images/Banner2_BMX%20Cycle%20Sim%20Bicycle%20Games.png"><span class="play-now-overlay">App Store</span></a>
                 </div>
                 <div class="slide-page">
-                    <a href="https://apps.apple.com/us/app/orders-up-block-puzzle/id6755723868" target="_blank"><img src="images/Banner3_Order%20s%20Up_%20Block%20Puzzle.png"><span class="play-now-overlay">App Store</span></a>
+                    <a href="https://apps.apple.com/us/app/orders-up-block-puzzle/id6755723868" target="_blank"><img src="images/Banner3_Orders%20Up_%20Block%20Puzzle.png"><span class="play-now-overlay">App Store</span></a>
                     <a href="https://apps.apple.com/us/app/stack-solitaire-puzzle/id6756317321" target="_blank"><img src="images/Banner4_Stack%20Solitaire%20Puzzle.png"><span class="play-now-overlay">App Store</span></a>
                 </div>
                 <div class="slide-page">
                     <a href="https://apps.apple.com/us/app/sticker-merge-puzzle/id6756307828" target="_blank"><img src="images/Banner5_Sticker%20Merge%20Puzzle.png"><span class="play-now-overlay">App Store</span></a>
-                    <a href="/" target="_blank"><img src="images/Banner1_Block%20Match_%20Detective%20Puzzle.png"><span class="play-now-overlay">App Store</span></a>
+                    <a href="/" target="_blank"><img src="images/Banner1_Block%20Match_%20Detective%20Puzzle.png"><span class="play-now-overlay">Home</span></a>
                 </div>
             </div>
         </div>
@@ -199,9 +176,13 @@
             const fragment = document.createDocumentFragment();
             data.items.forEach(game => {
                 let imgUrl = game.image;
+                
+                // --- 图标高清优化开始 ---
                 if (imgUrl.includes('gamepix.com')) {
+                    // 将路径中的缩略图尺寸（如 /250/）替换为高清尺寸（/500/）
                     imgUrl = imgUrl.replace(/\/\d+\//, '/500/');
                 }
+                // --- 图标高清优化结束 ---
 
                 const item = document.createElement('a');
                 item.href = game.url;
