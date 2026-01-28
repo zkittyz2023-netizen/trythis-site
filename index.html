@@ -50,16 +50,23 @@
         .more-btn:active { top: 4px; box-shadow: 0 2px 0px #bbb; }
         .btn-subtext { font-size: 13px; color: #888; margin-top: 15px; }
 
-        /* 游戏网格 - 高清优化 */
+        /* 游戏网格 */
         .game-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin-top: 25px; }
-        @media (max-width: 600px) { .game-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; } }
+        
+        /* 【修改点：手机端一行三列 & 缩小间距】 */
+        @media (max-width: 600px) { 
+            .game-grid { grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 15px; } 
+            .game-item .g-title { font-size: 11px; padding: 6px 4px; }
+            .game-item .g-tag { font-size: 8px; padding: 2px 5px; top: 5px; left: 5px; }
+            .line { margin: 8px 0; } /* 缩小线条边距解决空白 */
+            #moreSection { margin: 15px 0 !important; }
+        }
         
         .game-item { text-decoration: none; border-radius: 18px; overflow: hidden; background: white; display: block; box-shadow: 0 4px 12px rgba(0,0,0,0.08); position: relative; transition: transform 0.2s ease; }
         .game-item:active { transform: scale(0.96); }
         .game-item .img-wrapper { width: 100%; aspect-ratio: 1/1; background: #eee; overflow: hidden; }
         .game-item img { 
             width: 100%; height: 100%; object-fit: cover; display: block; 
-            /* 提高图片渲染清晰度 */
             image-rendering: -webkit-optimize-contrast; 
             image-rendering: crisp-edges;
         } 
@@ -101,7 +108,7 @@
                     <a href="https://apps.apple.com/us/app/sticker-merge-puzzle/id6756307828" target="_blank"><img src="images/Banner5_Sticker%20Merge%20Puzzle.png"><span class="play-now-overlay">App Store</span></a>
                     <a href="/" target="_blank"><img src="images/Banner1_Block%20Match_%20Detective%20Puzzle.png"><span class="play-now-overlay">Home</span></a>
                 </div>
-            </div>
+                </div>
         </div>
     </div>
     
@@ -109,6 +116,8 @@
         <div class="dot active" onclick="goToSlide(0)"></div>
         <div class="dot" onclick="goToSlide(1)"></div>
         <div class="dot" onclick="goToSlide(2)"></div>
+        <div class="dot" onclick="goToSlide(3)"></div>
+        <div class="dot" onclick="goToSlide(4)"></div>
     </div>
 
     <div id="moreSection">
@@ -147,7 +156,7 @@
 
 <script>
     let curIndex = 0;
-    const totalSlides = 3; 
+    const totalSlides = 5;  /* 修正回 5 页 */
     const slidesEle = document.getElementById('mainSlides');
     const dotEles = document.querySelectorAll('.dot');
     
@@ -176,14 +185,9 @@
             const fragment = document.createDocumentFragment();
             data.items.forEach(game => {
                 let imgUrl = game.image;
-                
-                // --- 图标高清优化开始 ---
                 if (imgUrl.includes('gamepix.com')) {
-                    // 将路径中的缩略图尺寸（如 /250/）替换为高清尺寸（/500/）
                     imgUrl = imgUrl.replace(/\/\d+\//, '/500/');
                 }
-                // --- 图标高清优化结束 ---
-
                 const item = document.createElement('a');
                 item.href = game.url;
                 item.className = 'game-item';
