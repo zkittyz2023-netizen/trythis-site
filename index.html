@@ -5,6 +5,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>trythis.online - Play Best H5 Games Instantly</title>
+    <script>
+        /* 核心修改：如果地址栏包含 index.html，自动修剪为干净的域名 */
+        if (window.location.pathname.endsWith('/index.html')) {
+            const cleanUrl = window.location.protocol + "//" + window.location.host + window.location.pathname.replace('/index.html', '/');
+            window.history.replaceState({}, document.title, cleanUrl);
+        }
+    </script>
     <style>
         :root { --main-bg: #ffffff; --hover-blue: #1a73e8; }
         body { font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; margin: 0; padding: 0; text-align: center; color: #333; background-image: url('images/heart-bg.png'); background-size: cover; background-position: center; background-attachment: fixed; background-color: #f7f7f7; }
@@ -12,8 +19,10 @@
         .container { background: var(--main-bg); margin: 0 auto; padding: 15px; box-sizing: border-box; width: 100%; min-height: 100vh; display: flex; flex-direction: column; transition: all 0.3s ease; }
         @media (min-width: 800px) { body { padding: 50px 0; } .container { width: 75%; max-width: 1000px; min-width: 800px; min-height: auto; border-radius: 40px; box-shadow: 0 30px 80px rgba(0,0,0,0.12); border: 1px solid rgba(0,0,0,0.03); padding: 40px; } }
         
+        /* 优化 Logo 区域 */
         .logo-box { padding: 10px 0; display: flex; align-items: center; justify-content: flex-start; }
-        .logo-box img { height: 40px; object-fit: contain; } 
+        .logo-box a { display: flex; align-items: center; text-decoration: none; }
+        .logo-box img { height: 40px; object-fit: contain; cursor: pointer; } 
         .line { border: 0; border-top: 1px solid #eee; margin: 15px 0; }
         
         /* 轮播图样式 */
@@ -91,7 +100,11 @@
 <body>
 
 <div class="container">
-    <div class="logo-box"><img src="images/logo.png" alt="logo"></div>
+    <div class="logo-box">
+        <a href="/">
+            <img src="images/logo.png" alt="logo">
+        </a>
+    </div>
     <div class="line"></div>
 
     <div class="slider-wrapper">
@@ -109,15 +122,7 @@
                 </div>
                 <div class="slide-page">
                     <a href="https://apps.apple.com/us/app/sticker-merge-puzzle/id6756307828" target="_blank"><img src="images/Banner5_Sticker%20Merge%20Puzzle.png"><span class="play-now-overlay">App Store</span></a>
-                    <a href="#" target="_blank"><img src="images/Banner1_Block%20Match_%20Detective%20Puzzle.png"><span class="play-now-overlay">App Store</span></a>
-                </div>
-                <div class="slide-page">
-                    <a href="#" target="_blank"><img src="images/Banner2_BMX%20Cycle%20Sim%20Bicycle%20Games.png"><span class="play-now-overlay">App Store</span></a>
-                    <a href="#" target="_blank"><img src="images/Banner3_Order%20s%20Up_%20Block%20Puzzle.png"><span class="play-now-overlay">App Store</span></a>
-                </div>
-                <div class="slide-page">
-                    <a href="#" target="_blank"><img src="images/Banner4_Stack%20Solitaire%20Puzzle.png"><span class="play-now-overlay">App Store</span></a>
-                    <a href="#" target="_blank"><img src="images/Banner5_Sticker%20Merge%20Puzzle.png"><span class="play-now-overlay">App Store</span></a>
+                    <a href="/" target="_blank"><img src="images/Banner1_Block%20Match_%20Detective%20Puzzle.png"><span class="play-now-overlay">App Store</span></a>
                 </div>
             </div>
         </div>
@@ -127,8 +132,6 @@
         <div class="dot active" onclick="goToSlide(0)"></div>
         <div class="dot" onclick="goToSlide(1)"></div>
         <div class="dot" onclick="goToSlide(2)"></div>
-        <div class="dot" onclick="goToSlide(3)"></div>
-        <div class="dot" onclick="goToSlide(4)"></div>
     </div>
 
     <div id="moreSection">
@@ -167,7 +170,7 @@
 
 <script>
     let curIndex = 0;
-    const totalSlides = 5;
+    const totalSlides = 3; 
     const slidesEle = document.getElementById('mainSlides');
     const dotEles = document.querySelectorAll('.dot');
     
@@ -195,10 +198,8 @@
             const data = await res.json();
             const fragment = document.createDocumentFragment();
             data.items.forEach(game => {
-                // 解决 GamePix 图标模糊：强制获取原始图或 500px 版本
                 let imgUrl = game.image;
                 if (imgUrl.includes('gamepix.com')) {
-                    // 将路径中的数字(如 /250/) 替换为 500
                     imgUrl = imgUrl.replace(/\/\d+\//, '/500/');
                 }
 
