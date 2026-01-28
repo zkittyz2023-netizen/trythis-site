@@ -18,14 +18,15 @@
         .container { background: var(--main-bg); margin: 0 auto; padding: 15px; box-sizing: border-box; width: 100%; min-height: 100vh; display: flex; flex-direction: column; transition: all 0.3s ease; }
         @media (min-width: 800px) { body { padding: 50px 0; } .container { width: 75%; max-width: 1000px; min-width: 800px; min-height: auto; border-radius: 40px; box-shadow: 0 30px 80px rgba(0,0,0,0.12); border: 1px solid rgba(0,0,0,0.03); padding: 40px; } }
         
-        .logo-box { padding: 10px 0; display: flex; align-items: center; justify-content: flex-start; }
+        .logo-box { padding: 5px 0; display: flex; align-items: center; justify-content: flex-start; }
         .logo-box a { display: flex; align-items: center; text-decoration: none; }
-        .logo-box img { height: 40px; object-fit: contain; cursor: pointer; } 
-        .line { border: 0; border-top: 1px solid #eee; margin: 20px 0; }
+        .logo-box img { height: 35px; object-fit: contain; cursor: pointer; } 
         
-        /* 轮播图样式 */
+        .line { border: 0; border-top: 1px solid #eee; margin: 20px 0; }
+
+        /* 轮播图 */
         .slider-wrapper { position: relative; width: 100%; }
-        .slider-container { position: relative; width: 100%; border-radius: 25px; overflow: hidden; box-shadow: 0 8px 25px rgba(0,0,0,0.1); }
+        .slider-container { position: relative; width: 100%; border-radius: 20px; overflow: hidden; box-shadow: 0 8px 25px rgba(0,0,0,0.1); }
         .slides { display: flex; width: 100%; overflow-x: auto; scroll-snap-type: x mandatory; scroll-behavior: smooth; scrollbar-width: none; }
         .slides::-webkit-scrollbar { display: none; }
         .slide-page { flex: 0 0 100%; width: 100%; display: grid; grid-template-columns: 1fr 1fr; gap: 10px; scroll-snap-align: start; padding: 5px; box-sizing: border-box; }
@@ -33,48 +34,51 @@
         .slide-page img { width: 100%; height: 280px; object-fit: cover; display: block; } 
         @media (max-width: 600px) { .slide-page img { height: 160px; } }
         
-        .nav-btn { position: absolute; top: 50%; transform: translateY(-50%); width: 40px; height: 40px; background: rgba(255, 255, 255, 0.85); border: none; border-radius: 50%; cursor: pointer; z-index: 10; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 10px rgba(0,0,0,0.2); transition: all 0.2s; font-size: 20px; color: #333; font-weight: bold; }
-        .nav-btn:active { background: #fff; transform: translateY(-50%) scale(0.9); }
-        .prev-btn { left: 10px; }
-        .next-btn { right: 10px; }
+        .nav-btn { position: absolute; top: 50%; transform: translateY(-50%); width: 35px; height: 35px; background: rgba(255, 255, 255, 0.9); border: none; border-radius: 50%; cursor: pointer; z-index: 10; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 10px rgba(0,0,0,0.15); transition: all 0.2s; font-size: 16px; color: #333; }
+        .prev-btn { left: 8px; }
+        .next-btn { right: 8px; }
 
-        .play-now-overlay { position: absolute; right: 10px; bottom: 10px; background: rgba(255, 255, 255, 0.9); color: #222; padding: 6px 12px; border-radius: 20px; font-weight: 800; font-size: 11px; text-decoration: none; }
-        .dots { display: flex; justify-content: center; gap: 8px; margin: 15px 0; }
-        .dot { width: 10px; height: 10px; background: #e0e0e0; border-radius: 50%; cursor: pointer; border: none; }
-        .dot.active { background: #555; transform: scale(1.3); }
+        .play-now-overlay { position: absolute; right: 10px; bottom: 10px; background: rgba(255, 255, 255, 0.95); color: #222; padding: 4px 10px; border-radius: 15px; font-weight: 800; font-size: 10px; text-decoration: none; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        .dots { display: flex; justify-content: center; gap: 6px; margin: 12px 0; }
+        .dot { width: 8px; height: 8px; background: #e0e0e0; border-radius: 50%; cursor: pointer; border: none; }
+        .dot.active { background: #666; transform: scale(1.2); }
 
-        #moreSection { display: block !important; margin: 30px 0 !important; }
-        .more-btn { display: inline-block; background: linear-gradient(to bottom, #ffffff 0%, #f9f9f9 100%); padding: 16px 55px; border-radius: 35px; text-decoration: none; color: #333; font-weight: 800; font-size: 17px; border: 1px solid #dcdcdc; box-shadow: 0 6px 0px #bbb, 0 12px 20px rgba(0,0,0,0.1); transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275); position: relative; cursor: pointer; top: 0; }
-        .more-btn:active { top: 4px; box-shadow: 0 2px 0px #bbb; }
-        .btn-subtext { font-size: 13px; color: #888; margin-top: 15px; }
+        /* Explore All Games 区域修复 */
+        #moreSection { display: block !important; margin: 20px 0 !important; }
+        .more-btn { display: inline-block; background: #fff; padding: 12px 40px; border-radius: 30px; text-decoration: none; color: #333; font-weight: 700; font-size: 16px; border: 1px solid #e0e0e0; box-shadow: 0 4px 12px rgba(0,0,0,0.08); transition: all 0.2s ease; cursor: pointer; }
+        .more-btn:active { transform: scale(0.95); box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        .btn-subtext { font-size: 12px; color: #999; margin-top: 8px; }
 
-        .game-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin-top: 25px; }
-        
-        /* 手机端间距优化 - 重新找回呼吸感 */
-        @media (max-width: 600px) { 
-            .game-grid { grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 20px; margin-bottom: 25px; } /* 底部留白 */
-            .game-item .g-title { font-size: 11px; padding: 8px 4px; height: auto; white-space: normal; line-height: 1.1; display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; overflow: hidden; } 
-            .game-item .g-tag { font-size: 8px; padding: 2px 5px; top: 5px; left: 5px; border-radius: 6px; }
-            .line { margin: 25px 0; } /* 增加分割线空隙 */
-            #moreSection { margin: 25px 0 !important; }
-            .category-grid { margin-top: 15px; gap: 10px; }
-            .category-item { padding: 12px 8px; font-size: 13px; border-radius: 12px; }
+        /* 游戏网格 - 修复遮挡关键点 */
+        .game-grid { 
+            display: grid; 
+            grid-template-columns: repeat(3, 1fr); 
+            gap: 12px; 
+            margin-top: 15px; 
+            padding-bottom: 20px; /* 核心修改：给底部留出空间，防止盖住分隔线 */
         }
         
-        .game-item { text-decoration: none; border-radius: 18px; overflow: hidden; background: white; display: block; box-shadow: 0 4px 12px rgba(0,0,0,0.08); position: relative; transition: transform 0.2s ease; }
+        @media (max-width: 600px) { 
+            .game-grid { grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 10px; } 
+            .game-item .g-title { font-size: 11px; padding: 6px 2px; height: 2.4em; line-height: 1.2; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; white-space: normal; } 
+            .line { margin: 15px 0; } /* 缩减手机端线条上下间距 */
+            #moreSection { margin: 15px 0 !important; }
+        }
+        
+        .game-item { text-decoration: none; border-radius: 15px; overflow: hidden; background: white; display: block; box-shadow: 0 3px 10px rgba(0,0,0,0.06); position: relative; transition: transform 0.2s; }
         .game-item:active { transform: scale(0.96); }
         .game-item .img-wrapper { width: 100%; aspect-ratio: 1/1; background: #eee; overflow: hidden; }
         .game-item img { width: 100%; height: 100%; object-fit: cover; display: block; } 
-        .game-item .g-title { padding: 10px 8px; font-size: 13px; font-weight: bold; color: #333; text-align: center; }
-        .game-item .g-tag { position: absolute; top: 8px; left: 8px; background: rgba(0,0,0,0.7); color: #fff; font-size: 10px; padding: 3px 8px; border-radius: 8px; z-index: 2; backdrop-filter: blur(2px); }
+        .game-item .g-title { padding: 8px 5px; font-size: 13px; font-weight: 600; color: #333; text-align: center; }
+        .game-item .g-tag { position: absolute; top: 6px; left: 6px; background: rgba(0,0,0,0.6); color: #fff; font-size: 9px; padding: 2px 6px; border-radius: 6px; z-index: 2; backdrop-filter: blur(2px); }
 
-        .category-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-top: 20px; }
-        @media (min-width: 601px) { .category-grid { grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); } }
+        .category-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-top: 15px; }
+        @media (min-width: 601px) { .category-grid { grid-template-columns: repeat(3, 1fr); } }
         
-        .category-item { display: block; text-decoration: none; color: white; padding: 15px; border-radius: 16px; font-weight: bold; font-size: 14px; text-shadow: 0 2px 4px rgba(0,0,0,0.2); transition: opacity 0.2s; }
+        .category-item { display: block; text-decoration: none; color: white; padding: 14px; border-radius: 12px; font-weight: bold; font-size: 14px; transition: opacity 0.2s; }
         
-        .footer-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; padding: 30px 0; border-top: 1px solid #eee; margin-top: 30px; }
-        .footer-links a { text-decoration: underline; color: #666; font-size: 14px; }
+        .footer-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 15px; padding: 20px 0; border-top: 1px solid #eee; margin-top: 25px; }
+        .footer-links a { text-decoration: none; color: #888; font-size: 13px; border-bottom: 1px solid #ddd; }
     </style>
 </head>
 <body>
@@ -85,7 +89,7 @@
             <img src="images/logo.png" alt="logo">
         </a>
     </div>
-    <div class="line"></div>
+    <div class="line" style="margin-top: 10px;"></div>
 
     <div class="slider-wrapper">
         <button class="nav-btn prev-btn" onclick="moveSlide(-1)">❮</button>
@@ -112,29 +116,30 @@
         <div class="dot active" onclick="goToSlide(0)"></div>
         <div class="dot" onclick="goToSlide(1)"></div>
         <div class="dot" onclick="goToSlide(2)"></div>
-        <div class="dot" onclick="goToSlide(3)"></div>
-        <div class="dot" onclick="goToSlide(4)"></div>
     </div>
 
     <div id="moreSection">
         <a href="more.html" class="more-btn">🎮 Explore All Games</a>
-        <p class="btn-subtext">Can't find it? Click here to find them all!</p>
+        <p class="btn-subtext">Can't find it? Click here!</p>
     </div>
 
     <div class="line"></div>
-    <div style="text-align: left; padding: 10px 0;">
-        <h2 style="font-size: 20px; color: #222; margin-bottom: 5px;">🔥 Hot Recommended</h2>
-        <p style="font-size: 14px; color: #666; margin: 0;">Play the best H5 titles instantly.</p>
+    
+    <div style="text-align: left; padding: 0 5px;">
+        <h2 style="font-size: 18px; color: #222; margin: 0;">🔥 Hot Recommended</h2>
+        <p style="font-size: 13px; color: #888; margin: 4px 0 0 0;">Play the best titles instantly.</p>
     </div>
 
     <div class="game-grid" id="game-grid">
-        <p style="grid-column: 1/-1; padding: 40px; color: #999;">⚡ Loading Games...</p>
+        <p style="grid-column: 1/-1; padding: 30px; color: #bbb;">⚡ Loading Games...</p>
     </div>
 
     <div class="line"></div>
-    <div style="text-align: left; margin: 20px 0 15px 0;">
-        <h3 style="font-size: 18px; margin: 0;">Browse by Categories</h3>
+    
+    <div style="text-align: left; padding: 0 5px; margin-bottom: 12px;">
+        <h3 style="font-size: 17px; margin: 0;">Browse by Categories</h3>
     </div>
+    
     <div class="category-grid">
         <a href="https://www.gamepix.com/t/casual?sid=HSH02" target="_blank" class="category-item" style="background: #8e2a2a;">Casual</a>
         <a href="https://www.gamepix.com/t/puzzle?sid=HSH02" target="_blank" class="category-item" style="background: #d35400;">Puzzle</a>
@@ -149,12 +154,12 @@
         <a href="contact.html">Contact Us</a>
         <a href="privacy.html">Privacy Policy</a>
     </div>
-    <div style="text-align: center; padding: 20px 0; font-size: 12px; color: #bbb;">&copy; 2026 trythis.online - Powered by GamePix</div>
+    <div style="text-align: center; padding-bottom: 20px; font-size: 11px; color: #ccc;">&copy; 2026 trythis.online - Powered by GamePix</div>
 </div>
 
 <script>
     let curIndex = 0;
-    const totalSlides = 5; 
+    const totalSlides = 3; // 你的 HTML 里目前只有 3 页，这里设为 3 匹配
     const slidesEle = document.getElementById('mainSlides');
     const dotEles = document.querySelectorAll('.dot');
     
@@ -170,9 +175,9 @@
         curIndex = (curIndex + step + totalSlides) % totalSlides;
         goToSlide(curIndex);
     }
-    let autoPlay = setInterval(() => moveSlide(1), 3000);
+    let autoPlay = setInterval(() => moveSlide(1), 3500);
     document.querySelector('.slider-wrapper').addEventListener('mouseenter', () => clearInterval(autoPlay));
-    document.querySelector('.slider-wrapper').addEventListener('mouseleave', () => autoPlay = setInterval(() => moveSlide(1), 3000));
+    document.querySelector('.slider-wrapper').addEventListener('mouseleave', () => autoPlay = setInterval(() => moveSlide(1), 3500));
 
     async function loadGames() {
         const feedUrl = "https://feeds.gamepix.com/v2/json?sid=HSH02&pagination=12&page=1";
@@ -183,16 +188,14 @@
             const fragment = document.createDocumentFragment();
             data.items.forEach(game => {
                 let imgUrl = game.image;
-                if (imgUrl.includes('gamepix.com')) {
-                    imgUrl = imgUrl.replace(/\/\d+\//, '/500/');
-                }
+                if (imgUrl.includes('gamepix.com')) { imgUrl = imgUrl.replace(/\/\d+\//, '/500/'); }
                 const item = document.createElement('a');
                 item.href = game.url;
                 item.className = 'game-item';
                 item.target = '_blank';
                 item.innerHTML = `
                     <span class="g-tag">${game.category}</span>
-                    <div class="img-wrapper"><img src="${imgUrl}" alt="${game.title}" loading="lazy" decoding="async"></div>
+                    <div class="img-wrapper"><img src="${imgUrl}" alt="${game.title}" loading="lazy"></div>
                     <div class="g-title">${game.title}</div>
                 `;
                 fragment.appendChild(item);
@@ -200,7 +203,7 @@
             grid.innerHTML = "";
             grid.appendChild(fragment);
         } catch (e) {
-            grid.innerHTML = "<p>Failed to load games. Please refresh.</p>";
+            grid.innerHTML = "<p>Failed to load games.</p>";
         }
     }
     loadGames();
